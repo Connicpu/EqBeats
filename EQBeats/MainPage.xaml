@@ -1,0 +1,140 @@
+﻿<phone:PhoneApplicationPage 
+    x:Class="EQBeats.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:controls="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls"
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+    mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="696"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="#440088"
+    SupportedOrientations="Portrait" Orientation="Portrait"
+    shell:SystemTray.IsVisible="True">
+
+    <toolkit:TransitionService.NavigationInTransition>
+        <toolkit:NavigationInTransition>
+            <toolkit:NavigationInTransition.Backward>
+                <toolkit:TurnstileTransition Mode="BackwardIn" />
+            </toolkit:NavigationInTransition.Backward>
+            <toolkit:NavigationInTransition.Forward>
+                <toolkit:TurnstileTransition Mode="ForwardIn" />
+            </toolkit:NavigationInTransition.Forward>
+        </toolkit:NavigationInTransition>
+    </toolkit:TransitionService.NavigationInTransition>
+    <toolkit:TransitionService.NavigationOutTransition>
+        <toolkit:NavigationOutTransition>
+            <toolkit:NavigationOutTransition.Backward>
+                <toolkit:TurnstileTransition Mode="BackwardOut" />
+            </toolkit:NavigationOutTransition.Backward>
+            <toolkit:NavigationOutTransition.Forward>
+                <toolkit:TurnstileTransition Mode="ForwardOut" />
+            </toolkit:NavigationOutTransition.Forward>
+        </toolkit:NavigationOutTransition>
+    </toolkit:TransitionService.NavigationOutTransition>
+
+    <phone:PhoneApplicationPage.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Styles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+            <DataTemplate x:Key="SongTemplate">
+                <Button Style="{StaticResource XTiltButtonStyle}" Padding="-12" 
+                        Click="PlayButtonClicked" HorizontalAlignment="Left">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Image Source="/Icons/play.png" />
+                        <StackPanel Grid.Column="1" Margin="4">
+                            <TextBlock FontSize="20" Text="{Binding Path=Title}" />
+                            <TextBlock FontSize="14">by <Run Text="{Binding Path=Artist.Name}"/></TextBlock>
+                        </StackPanel>
+                    </Grid>
+                </Button>
+            </DataTemplate>
+            <DataTemplate x:Key="ArtistTemplate">
+                <Button Style="{StaticResource XTiltButtonStyle}" Padding="-12" 
+                        HorizontalAlignment="Left" Click="ArtistItemClicked">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Image Source="{Binding Path=Avatar}" Width="60" Height="60" Margin="5"/>
+                        <StackPanel Grid.Column="1">
+                            <TextBlock Text="{Binding Path=Name}" FontSize="28" />
+                            <TextBlock FontSize="20"><Run Text="{Binding Path=Tracks.Length}" /> songs</TextBlock>
+                        </StackPanel>
+                    </Grid>
+                </Button>
+            </DataTemplate>
+        </ResourceDictionary>
+    </phone:PhoneApplicationPage.Resources>
+
+    <Grid x:Name="LayoutRoot" Background="#FCFCFC">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <StackPanel Margin="5" Orientation="Horizontal">
+            <Image Width="100" Source="https://eqbeats.org/static/logo.png" />
+            <TextBlock FontSize="48">Equestrian Beats</TextBlock>
+        </StackPanel>
+        <Grid Grid.Row="1">
+            <controls:Panorama Foreground="#440088" Name="Panorama" SelectionChanged="PanoramaSelectionChanged">
+                <controls:PanoramaItem Header="Latest">
+                    <ScrollViewer>
+                        <ItemsControl Name="LatestSongList" ItemTemplate="{StaticResource SongTemplate}" />
+                    </ScrollViewer>
+                </controls:PanoramaItem>
+                <controls:PanoramaItem Header="Featured">
+                    <ScrollViewer>
+                        <ItemsControl Name="FeaturedSongList" ItemTemplate="{StaticResource SongTemplate}" />
+                    </ScrollViewer>
+                </controls:PanoramaItem>
+                <controls:PanoramaItem Header="Random">
+                    <ScrollViewer>
+                        <ItemsControl Name="RandomSongList" ItemTemplate="{StaticResource SongTemplate}" />
+                    </ScrollViewer>
+                </controls:PanoramaItem>
+                <controls:PanoramaItem Header="Favorites">
+                    <ScrollViewer>
+                        <ItemsControl Name="FavoriteArtists" ItemTemplate="{StaticResource ArtistTemplate}" />
+                    </ScrollViewer>
+                </controls:PanoramaItem>
+                <controls:PanoramaItem Header="Search">
+                    <ScrollViewer>
+                        <StackPanel>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+                                <TextBox Name="Search" Margin="6" BorderBrush="Gray" />
+                                <Button Style="{StaticResource XTiltButtonStyle}" Grid.Column="1" Padding="-6"
+                                        Click="SearchClicked">
+                                    <Image Source="/Icons/search.png" />
+                                </Button>
+                            </Grid>
+                            <ItemsControl Name="SearchedSongList" ItemTemplate="{StaticResource SongTemplate}" />
+                        </StackPanel>
+                    </ScrollViewer>
+                </controls:PanoramaItem>
+            </controls:Panorama>
+        </Grid>
+    </Grid>
+
+    <phone:PhoneApplicationPage.ApplicationBar>
+        <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True" BackgroundColor="#E0E0E0" ForegroundColor="#440088">
+            <shell:ApplicationBarIconButton IconUri="/Icons/refresh.png" Text="Refresh" Click="RefreshClicked" />
+            <shell:ApplicationBarIconButton IconUri="/Icons/play.png" Text="Now Playing" Click="NowPlayingClicked" />
+            <shell:ApplicationBarIconButton IconUri="/Icons/search.png" Text="Find Artists" Click="ArtistsClick" />
+        </shell:ApplicationBar>
+    </phone:PhoneApplicationPage.ApplicationBar>
+
+</phone:PhoneApplicationPage>

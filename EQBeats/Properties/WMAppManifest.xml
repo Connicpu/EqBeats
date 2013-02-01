@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Deployment xmlns="http://schemas.microsoft.com/windowsphone/2009/deployment" AppPlatformVersion="7.1">
+  <App xmlns="" ProductID="{995a4b48-06b2-4ac6-ba71-7c59679d9cd4}" Title="EqBeats" RuntimeType="Silverlight" Version="1.0.0.0" Genre="apps.normal" Author="Connor Hilarides" Description="Free streaming of community made brony music" Publisher="Connorcpu Software">
+    <IconPath IsRelative="true" IsResource="false">ApplicationIcon.png</IconPath>
+    <Capabilities>
+      <Capability Name="ID_CAP_GAMERSERVICES" />
+      <Capability Name="ID_CAP_IDENTITY_DEVICE" />
+      <Capability Name="ID_CAP_IDENTITY_USER" />
+      <Capability Name="ID_CAP_LOCATION" />
+      <Capability Name="ID_CAP_MEDIALIB" />
+      <Capability Name="ID_CAP_MICROPHONE" />
+      <Capability Name="ID_CAP_NETWORKING" />
+      <Capability Name="ID_CAP_PHONEDIALER" />
+      <Capability Name="ID_CAP_PUSH_NOTIFICATION" />
+      <Capability Name="ID_CAP_SENSORS" />
+      <Capability Name="ID_CAP_WEBBROWSERCOMPONENT" />
+      <Capability Name="ID_CAP_ISV_CAMERA" />
+      <Capability Name="ID_CAP_CONTACTS" />
+      <Capability Name="ID_CAP_APPOINTMENTS" />
+    </Capabilities>
+    <Tasks>
+      <DefaultTask Name="_default" NavigationPage="MainPage.xaml" />
+      <ExtendedTask Name="BackgroundTask">
+        <BackgroundServiceAgent Specifier="AudioPlayerAgent" Name="EQBeatsPlaybackAgent" Source="EQBeatsPlaybackAgent" Type="EQBeatsPlaybackAgent.AudioPlayer" />
+      </ExtendedTask>
+    </Tasks>
+    <Tokens>
+      <PrimaryToken TokenID="EQBeatsToken" TaskName="_default">
+        <TemplateType5>
+          <BackgroundImageURI IsRelative="true" IsResource="false">Background.png</BackgroundImageURI>
+          <Count>0</Count>
+          <Title>EqBeats</Title>
+        </TemplateType5>
+      </PrimaryToken>
+    </Tokens>
+  </App>
+</Deployment>
