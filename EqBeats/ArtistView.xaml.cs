@@ -1,20 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO.IsolatedStorage;
-using System.Linq;
-using System.Net;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Animation;
-using System.Windows.Shapes;
 using EqBeats.Models;
 using EqBeatsAPI;
 using EqBeatsPlaybackAgent;
 using Microsoft.Phone.BackgroundAudio;
-using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 
 namespace EqBeats {
@@ -23,6 +15,21 @@ namespace EqBeats {
 
         public ArtistView() {
             InitializeComponent();
+
+            BackgroundAudioPlayer.Instance.PlayStateChanged += InstanceOnPlayStateChanged;
+        }
+
+        private void InstanceOnPlayStateChanged(object sender, EventArgs eventArgs) {
+            var playState = BackgroundAudioPlayer.Instance.PlayerState;
+            switch (playState) {
+                case PlayState.Shutdown:
+                case PlayState.Unknown:
+                    ((ApplicationBarIconButton) ApplicationBar.Buttons[0]).IsEnabled = false;
+                    break;
+                default:
+                    ((ApplicationBarIconButton) ApplicationBar.Buttons[0]).IsEnabled = true;
+                    break;
+            }
         }
 
         protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e) {
@@ -76,7 +83,15 @@ namespace EqBeats {
         }
 
         private void NowPlayingClicked(object sender, EventArgs e) {
-
+            switch (BackgroundAudioPlayer.Instance.PlayerState) {
+                case PlayState.Shutdown:
+                case PlayState.Unknown:
+                    ((ApplicationBarIconButton)ApplicationBar.Buttons[0]).IsEnabled = false;
+                    return;
+                default:
+                    NavigationService.Navigate(new Uri("/NowPlaying.xaml", UriKind.Relative));
+                    return;
+            }
         }
 
         private void AddFavClick(object sender, EventArgs e) {
