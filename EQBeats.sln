@@ -1,11 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EQBeats", "EQBeats\EQBeats.csproj", "{E1F978BD-454A-438E-BE1C-D2086E751A5A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EqBeats", "EQBeats\EqBeats.csproj", "{E1F978BD-454A-438E-BE1C-D2086E751A5A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EQBeatsPlaybackAgent", "EQBeatsPlaybackAgent\EQBeatsPlaybackAgent.csproj", "{C471C814-C9AD-4C3B-9060-928502DA46D2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EqBeatsPlaybackAgent", "EQBeatsPlaybackAgent\EqBeatsPlaybackAgent.csproj", "{C471C814-C9AD-4C3B-9060-928502DA46D2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EQBeatsAPI", "EQBeatsAPI\EQBeatsAPI.csproj", "{F406469B-24FF-4402-B639-5017035F913D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EqBeatsAPI", "EQBeatsAPI\EqBeatsAPI.csproj", "{F406469B-24FF-4402-B639-5017035F913D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -21,11 +21,11 @@
     <Tasks>
       <DefaultTask Name="_default" NavigationPage="MainPage.xaml" />
       <ExtendedTask Name="BackgroundTask">
-        <BackgroundServiceAgent Specifier="AudioPlayerAgent" Name="EQBeatsPlaybackAgent" Source="EQBeatsPlaybackAgent" Type="EQBeatsPlaybackAgent.AudioPlayer" />
+        <BackgroundServiceAgent Specifier="AudioPlayerAgent" Name="EqBeatsPlaybackAgent" Source="EqBeatsPlaybackAgent" Type="EqBeatsPlaybackAgent.AudioPlayer" />
       </ExtendedTask>
     </Tasks>
     <Tokens>
-      <PrimaryToken TokenID="EQBeatsToken" TaskName="_default">
+      <PrimaryToken TokenID="EqBeatsToken" TaskName="_default">
         <TemplateType5>
           <BackgroundImageURI IsRelative="true" IsResource="false">Background.png</BackgroundImageURI>
           <Count>0</Count>

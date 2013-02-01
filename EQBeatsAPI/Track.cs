@@ -2,7 +2,7 @@
 using System.Runtime.Serialization;
 using Microsoft.Phone.BackgroundAudio;
 
-namespace EQBeatsAPI {
+namespace EqBeatsAPI {
     [DataContract]
     public class Track {
 

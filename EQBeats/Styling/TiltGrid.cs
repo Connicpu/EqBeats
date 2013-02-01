@@ -1,6 +1,6 @@
 ﻿using System.Windows.Controls;
 
-namespace EQBeats.Styling {
+namespace EqBeats.Styling {
     public class TiltGrid : Grid {
     }
 }

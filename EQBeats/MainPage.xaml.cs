@@ -1,19 +1,18 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO.IsolatedStorage;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
-using EQBeats.Models;
-using EQBeatsAPI;
-using EQBeatsPlaybackAgent;
+using EqBeats.Models;
+using EqBeatsAPI;
+using EqBeatsPlaybackAgent;
 using Microsoft.Phone.BackgroundAudio;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 
-namespace EQBeats {
+namespace EqBeats {
     public partial class MainPage {
         private bool justLaunched = true;
 

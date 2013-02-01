@@ -11,7 +11,7 @@ using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using Newtonsoft.Json;
 
-namespace EQBeatsAPI {
+namespace EqBeatsAPI {
     public class EndpointLoader<T> {
         public delegate void EndpointLoadCompletedHandler(T data);
         public delegate void EndpointLoadFailedHandler(WebException exception);

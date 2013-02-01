@@ -10,7 +10,7 @@ using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 
-namespace EQBeats.Models {
+namespace EqBeats.Models {
     public class PinnedArtists {
         public List<int> Ids = new List<int>();
     }

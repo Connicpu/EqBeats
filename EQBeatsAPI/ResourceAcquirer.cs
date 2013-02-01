@@ -12,7 +12,7 @@ using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using Newtonsoft.Json;
 
-namespace EQBeatsAPI {
+namespace EqBeatsAPI {
     public class ResourceAcquirer<T> {
         public delegate void AcquisitionCompleteHandler(T result);
         public delegate void AcquisitionFailedHandler(WebException exception);

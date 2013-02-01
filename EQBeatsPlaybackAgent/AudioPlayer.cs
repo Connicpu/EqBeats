@@ -3,12 +3,12 @@ using System.IO;
 using System.IO.IsolatedStorage;
 using System.Threading;
 using System.Windows;
-using EQBeatsAPI;
+using EqBeatsAPI;
 using Microsoft.Phone.BackgroundAudio;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
-namespace EQBeatsPlaybackAgent {
+namespace EqBeatsPlaybackAgent {
     public class AudioPlayer : AudioPlayerAgent {
         private static volatile bool _classInitialized;
 

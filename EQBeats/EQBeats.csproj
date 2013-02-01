@@ -9,7 +9,7 @@
     <ProjectTypeGuids>{C089C8C0-30E0-4E22-80C0-CE093F111A43};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>EQBeats</RootNamespace>
+    <RootNamespace>EqBeats</RootNamespace>
     <AssemblyName>EQBeats</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <SilverlightVersion>$(TargetFrameworkVersion)</SilverlightVersion>
@@ -139,13 +139,13 @@
     <Content Include="SplashScreenImage.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\EQBeatsAPI\EQBeatsAPI.csproj">
+    <ProjectReference Include="..\EQBeatsAPI\EqBeatsAPI.csproj">
       <Project>{F406469B-24FF-4402-B639-5017035F913D}</Project>
-      <Name>EQBeatsAPI</Name>
+      <Name>EqBeatsAPI</Name>
     </ProjectReference>
-    <ProjectReference Include="..\EQBeatsPlaybackAgent\EQBeatsPlaybackAgent.csproj">
+    <ProjectReference Include="..\EQBeatsPlaybackAgent\EqBeatsPlaybackAgent.csproj">
       <Project>{C471C814-C9AD-4C3B-9060-928502DA46D2}</Project>
-      <Name>EQBeatsPlaybackAgent</Name>
+      <Name>EqBeatsPlaybackAgent</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.$(TargetFrameworkProfile).Overrides.targets" />

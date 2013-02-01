@@ -9,10 +9,10 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
-using EQBeatsAPI;
+using EqBeatsAPI;
 using Microsoft.Phone.Controls;
 
-namespace EQBeats {
+namespace EqBeats {
     public partial class FindArtists : PhoneApplicationPage {
         public FindArtists() {
             InitializeComponent();

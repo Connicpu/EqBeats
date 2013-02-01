@@ -22,7 +22,7 @@ using Microsoft.Phone.Controls;
 
 #endif
 
-namespace EQBeats.Styling
+namespace EqBeats.Styling
 {
     /// <summary>
     /// This code provides attached properties for adding a 'tilt' effect to all controls within a container.

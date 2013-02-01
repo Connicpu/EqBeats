@@ -2,11 +2,11 @@
 using System.Windows;
 using System.Windows.Media.Imaging;
 using System.Windows.Threading;
-using EQBeatsAPI;
-using EQBeatsPlaybackAgent;
+using EqBeatsAPI;
+using EqBeatsPlaybackAgent;
 using Microsoft.Phone.BackgroundAudio;
 
-namespace EQBeats {
+namespace EqBeats {
     public partial class NowPlaying {
         readonly DispatcherTimer positionTimer = new DispatcherTimer();
 

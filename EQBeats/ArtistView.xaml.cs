@@ -10,14 +10,14 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
-using EQBeats.Models;
-using EQBeatsAPI;
-using EQBeatsPlaybackAgent;
+using EqBeats.Models;
+using EqBeatsAPI;
+using EqBeatsPlaybackAgent;
 using Microsoft.Phone.BackgroundAudio;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 
-namespace EQBeats {
+namespace EqBeats {
     public partial class ArtistView {
         private int _id;
 
