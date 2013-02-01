@@ -5,7 +5,6 @@ using System.Threading;
 using System.Windows;
 using EqBeatsAPI;
 using Microsoft.Phone.BackgroundAudio;
-using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
 namespace EqBeatsPlaybackAgent {

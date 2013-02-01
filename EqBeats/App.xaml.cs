@@ -1,21 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Animation;
+﻿using System.Windows;
 using System.Windows.Navigation;
-using System.Windows.Shapes;
 using BugSense;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 
 namespace EqBeats {
-    public partial class App : Application {
+    public partial class App {
         /// <summary>
         /// Provides easy access to the root frame of the Phone Application.
         /// </summary>
@@ -100,7 +90,7 @@ namespace EqBeats {
         #region Phone application initialization
 
         // Avoid double-initialization
-        private bool phoneApplicationInitialized = false;
+        private bool phoneApplicationInitialized;
 
         // Do not add any additional code to this method
         private void InitializePhoneApplication() {
@@ -122,7 +112,9 @@ namespace EqBeats {
         // Do not add any additional code to this method
         private void CompleteInitializePhoneApplication(object sender, NavigationEventArgs e) {
             // Set the root visual to allow the application to render
+// ReSharper disable RedundantCheckBeforeAssignment
             if (RootVisual != RootFrame)
+// ReSharper restore RedundantCheckBeforeAssignment
                 RootVisual = RootFrame;
 
             // Remove this handler since it is no longer needed
