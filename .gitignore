@@ -165,3 +165,7 @@ pip-log.txt
 #NuGet
 packages/*
 !packages/repositories.config
+
+#Other VS/WP7 crap
+EqBeats/SubmissionInfo/*
+MetricResults/*

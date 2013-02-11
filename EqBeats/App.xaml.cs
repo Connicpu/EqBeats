@@ -3,6 +3,7 @@ using System.Windows.Navigation;
 using BugSense;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
+using Microsoft.Xna.Framework.Media;
 
 namespace EqBeats {
     public partial class App {
@@ -18,6 +19,8 @@ namespace EqBeats {
         public App() {
             BugSenseHandler.Instance.Init(this, "fbf56725");
 
+            // WTF Marketplace... WHY DO YOU NEED THIS OR YOU DONT DETECT MEDIALIB?!
+            var library = new MediaLibrary();
 
             // Global handler for uncaught exceptions. 
             BugSenseHandler.Instance.UnhandledException += Application_UnhandledException;
