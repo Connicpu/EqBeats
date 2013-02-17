@@ -12,7 +12,9 @@
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="#440088"
     SupportedOrientations="Portrait" Orientation="Portrait"
-    shell:SystemTray.IsVisible="True" Background="#FCFCFC">
+    shell:SystemTray.IsVisible="True" Background="#FCFCFC"
+    shell:SystemTray.BackgroundColor="#FCFCFC"
+    shell:SystemTray.ForegroundColor="#440088">
 
     <toolkit:TransitionService.NavigationInTransition>
         <toolkit:NavigationInTransition>

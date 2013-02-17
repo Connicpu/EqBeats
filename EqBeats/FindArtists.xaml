@@ -13,7 +13,9 @@
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="#440088"
     SupportedOrientations="Portrait" Orientation="Portrait"
-    shell:SystemTray.IsVisible="True" Background="#FCFCFC">
+    shell:SystemTray.IsVisible="True" Background="#FCFCFC"
+    shell:SystemTray.BackgroundColor="#FCFCFC"
+    shell:SystemTray.ForegroundColor="#440088">
 
     <toolkit:TransitionService.NavigationInTransition>
         <toolkit:NavigationInTransition>
@@ -48,7 +50,7 @@
                             <ColumnDefinition Width="Auto" />
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
-                        <Image Source="{Binding Path=Avatar}" />
+                        <Image Source="{Binding Path=Avatar}" VerticalAlignment="Top" />
                         <StackPanel Grid.Column="1" Margin="4">
                             <TextBlock FontSize="24" Text="{Binding Path=Name}" />
                             <TextBlock FontSize="16" Text="{Binding Path=Description}" TextWrapping="Wrap"
@@ -84,6 +86,8 @@
                         <Image Source="/Icons/search.png" />
                     </Button>
                 </Grid>
+                <TextBlock Name="NoResults" Text="No search results" FontSize="36" 
+                           Foreground="Gray" Visibility="Collapsed" Margin="20" />
                 <ItemsControl Name="ArtistList" ItemTemplate="{StaticResource ArtistTemplate}" />
             </StackPanel>
         </ScrollViewer>

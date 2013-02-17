@@ -39,6 +39,13 @@ namespace EqBeats {
         }
 
         protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e) {
+            switch (BackgroundAudioPlayer.Instance.PlayerState) {
+                case PlayState.Shutdown:
+                case PlayState.Unknown:
+                    ((ApplicationBarIconButton)ApplicationBar.Buttons[1]).IsEnabled = false;
+                    break;
+            }
+
             var settings = IsolatedStorageSettings.ApplicationSettings;
             if (settings.Contains("pinned_favs")) {
                 var faves = (PinnedArtists)settings["pinned_favs"];
@@ -86,9 +93,11 @@ namespace EqBeats {
                 return;
             }
             SearchedSongList.ItemsSource = new Track[0];
+            StartDownload();
             ResourceManager.SearchTracks(Search.Text.Trim(),
                 tracks => Dispatcher.BeginInvoke(() => {
                     SearchedSongList.ItemsSource = tracks.Length > 25 ? tracks.Take(25).ToArray() : tracks;
+                    DownloadDone(tracks.Length > 0);
                 }),
                 exception => Dispatcher.BeginInvoke(() => MessageBox.Show("Error loading songs!")));
             Search.Text = "";
@@ -172,6 +181,23 @@ namespace EqBeats {
             var artist = ((FrameworkElement) sender).DataContext as User;
             if (artist == null) return;
             NavigationService.Navigate(new Uri("/ArtistView.xaml?id=" + artist.Id, UriKind.Relative));
+        }
+
+        public void StartDownload() {
+            SearchedSongList.Visibility = Visibility.Collapsed;
+            NoResults.Visibility = Visibility.Collapsed;
+            SystemTray.SetProgressIndicator(this, new ProgressIndicator { IsVisible = true, IsIndeterminate = true });
+        }
+
+        public void DownloadDone(bool anyItems) {
+            SystemTray.SetProgressIndicator(this, null);
+            if (!anyItems) {
+                SearchedSongList.Visibility = Visibility.Collapsed;
+                NoResults.Visibility = Visibility.Visible;
+            } else {
+                SearchedSongList.Visibility = Visibility.Visible;
+                NoResults.Visibility = Visibility.Collapsed;
+            }
         }
     }
 }

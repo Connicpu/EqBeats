@@ -182,9 +182,13 @@ namespace EqBeatsPlaybackAgent {
                     }
                     break;
                 case UserAction.SkipPrevious:
-                    AudioTrack previousTrack = GetPreviousTrack();
-                    if (previousTrack != null) {
-                        player.Track = previousTrack;
+                    if (player.Position > TimeSpan.FromSeconds(7)) {
+                        player.Position = new TimeSpan(0);
+                    } else {
+                        AudioTrack previousTrack = GetPreviousTrack();
+                        if (previousTrack != null) {
+                            player.Track = previousTrack;
+                        }
                     }
                     break;
             }
@@ -248,7 +252,7 @@ namespace EqBeatsPlaybackAgent {
                 track = (AudioTrack)CurrentPlaylist[PlaylistLocation];
                 SavePlaylist(CurrentPlaylist, PlaylistLocation);
             } else if (CurrentPlaylist.Length > 0) {
-                PlaylistLocation = 0;
+                PlaylistLocation = CurrentPlaylist.Length - 1;
                 track = (AudioTrack)CurrentPlaylist[PlaylistLocation];
                 SavePlaylist(CurrentPlaylist, PlaylistLocation);
             }

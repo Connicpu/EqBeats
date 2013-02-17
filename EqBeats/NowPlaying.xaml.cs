@@ -42,9 +42,13 @@ namespace EqBeats {
                 SongProgress.Value = percentage;
                 PositionLabel.Text = position.ToString(@"mm\:ss");
                 RemainingLabel.Text = (duration - position).ToString(@"mm\:ss");
-                if (AudioPlayer.CurrentPlaylist != null && AudioPlayer.PlaylistLocation < AudioPlayer.CurrentPlaylist.Length - 1) {
+                if (AudioPlayer.CurrentPlaylist != null) {
                     UpNextGrid.Visibility = Visibility.Visible;
-                    UpNextGrid.DataContext = AudioPlayer.CurrentPlaylist[AudioPlayer.PlaylistLocation + 1];
+                    UpNextGrid.DataContext = AudioPlayer.CurrentPlaylist[
+                        AudioPlayer.PlaylistLocation < AudioPlayer.CurrentPlaylist.Length - 1
+                            ? AudioPlayer.PlaylistLocation + 1
+                            : 0
+                    ];
                 } else {
                     UpNextGrid.Visibility = Visibility.Collapsed;
                 }
@@ -53,8 +57,13 @@ namespace EqBeats {
             InstanceOnPlayStateChanged(null, null);
         }
 
+        protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e) {
+            RefreshSongState();
+        }
+
         private void InstanceOnPlayStateChanged(object sender, EventArgs eventArgs) {
             var playState = BackgroundAudioPlayer.Instance.PlayerState;
+            RefreshSongState();
             switch (playState) {
                 case PlayState.TrackEnded:
                     SongProgress.IsIndeterminate = true;
@@ -73,9 +82,6 @@ namespace EqBeats {
                     PlayPauseImage.Source = new BitmapImage(new Uri("/Icons/play.png", UriKind.Relative));
                     break;
                 case PlayState.Playing:
-                    AudioPlayer.LoadPlaylist();
-                    var song = AudioPlayer.CurrentPlaylist[AudioPlayer.PlaylistLocation];
-                    DataContext = song;
                     PlayPauseImage.Source = new BitmapImage(new Uri("/Icons/pause.png", UriKind.Relative));
                     break;
                 case PlayState.BufferingStarted:
@@ -89,6 +95,12 @@ namespace EqBeats {
             }
         }
 
+        private void RefreshSongState() {
+            AudioPlayer.LoadPlaylist();
+            var song = AudioPlayer.CurrentPlaylist[AudioPlayer.PlaylistLocation];
+            DataContext = song;
+        }
+
         private void PlayPauseClick(object sender, RoutedEventArgs e) {
             if (BackgroundAudioPlayer.Instance.PlayerState == PlayState.Playing) {
                 BackgroundAudioPlayer.Instance.Pause();
@@ -99,10 +111,12 @@ namespace EqBeats {
 
         private void NextClick(object sender, RoutedEventArgs e) {
             BackgroundAudioPlayer.Instance.SkipNext();
+            RefreshSongState();
         }
 
         private void PreviousClick(object sender, RoutedEventArgs e) {
             BackgroundAudioPlayer.Instance.SkipPrevious();
+            RefreshSongState();
         }
 
         private void ArtistClick(object sender, RoutedEventArgs e) {

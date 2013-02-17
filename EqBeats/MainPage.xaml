@@ -8,12 +8,14 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:controls="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls"
     xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
-    mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="696"
+    xmlns:EqBeatsAPI="clr-namespace:EqBeatsAPI;assembly=EQBeatsAPI" mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="696"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="#440088"
     SupportedOrientations="Portrait" Orientation="Portrait"
-    shell:SystemTray.IsVisible="True" Background="#FCFCFC">
+    shell:SystemTray.IsVisible="True" Background="#FCFCFC"
+    shell:SystemTray.BackgroundColor="#FCFCFC"
+    shell:SystemTray.ForegroundColor="#440088">
 
     <toolkit:TransitionService.NavigationInTransition>
         <toolkit:NavigationInTransition>
@@ -43,7 +45,8 @@
             </ResourceDictionary.MergedDictionaries>
             <DataTemplate x:Key="SongTemplate">
                 <Button Style="{StaticResource XTiltButtonStyle}" Padding="-12" 
-                        Click="PlayButtonClicked" HorizontalAlignment="Left">
+                        Click="PlayButtonClicked" HorizontalAlignment="Left"
+                        d:DataContext="{d:DesignInstance Type=EqBeatsAPI:Track}">
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto" />
@@ -59,7 +62,8 @@
             </DataTemplate>
             <DataTemplate x:Key="ArtistTemplate">
                 <Button Style="{StaticResource XTiltButtonStyle}" Padding="-12" 
-                        HorizontalAlignment="Left" Click="ArtistItemClicked">
+                        HorizontalAlignment="Left" Click="ArtistItemClicked"
+                        d:DataContext="{d:DesignInstance Type=EqBeatsAPI:User}">
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto" />
@@ -121,6 +125,8 @@
                                     <Image Source="/Icons/search.png" />
                                 </Button>
                             </Grid>
+                            <TextBlock Name="NoResults" Text="No search results" FontSize="36" 
+                                       Foreground="Gray" Visibility="Collapsed" Margin="20" />
                             <ItemsControl Name="SearchedSongList" ItemTemplate="{StaticResource SongTemplate}" />
                         </StackPanel>
                     </ScrollViewer>
