@@ -49,11 +49,12 @@ namespace EqBeats {
             var settings = IsolatedStorageSettings.ApplicationSettings;
             if (settings.Contains("pinned_favs")) {
                 var faves = (PinnedArtists)settings["pinned_favs"];
-                FavoriteArtists.ItemsSource = new ObservableCollection<User>();
+                ObservableCollection<User> newList;
+                FavoriteArtists.ItemsSource = newList = new ObservableCollection<User>();
                 foreach (var fav in faves.Ids) {
                     ResourceManager.GetUserById(
                         fav, user => Dispatcher.BeginInvoke(
-                            () => ((ObservableCollection<User>)FavoriteArtists.ItemsSource).Add(user)),
+                            () => (newList).Add(user)),
                         exception => { });
                 }
             }
